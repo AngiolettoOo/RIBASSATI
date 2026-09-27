@@ -5,11 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Calcolo Tempi ILCAM</title>
   
-  <!-- Configurazione PWA per Smartphone (iOS e Android) -->
+  <!-- Configurazione PWA e Icona Home Smartphone -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Tempi ILCAM">
   <meta name="theme-color" content="#0f172a">
+  
+  <!-- Link Icona per iPhone e Android -->
+  <link rel="apple-touch-icon" href="ILCAM.jpg">
+  <link rel="icon" type="image/jpeg" href="ILCAM.jpg">
   
   <style>
     *, ::before, ::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: #e2e8f0; }
@@ -27,7 +31,7 @@
     .btn-reset { background-color: #1e293b; color: #cbd5e1; border: 1px solid #334155; }
     .btn-reset:active { background-color: #334155; }
     
-    main { max-width: 80rem; margin: 0 auto; padding: 0.875rem; width: 100%; flex-grow: 1; }
+    main { max-width: 80rem; margin: 0 auto; padding: 0.75rem; width: 100%; flex-grow: 1; }
     @media (min-width: 640px) { main { padding: 1.5rem 1rem; } }
 
     .grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
@@ -53,12 +57,18 @@
     .big-time { font-size: 2rem; font-weight: 900; color: #ffffff; margin: 0.25rem 0; word-break: break-word; }
     @media (min-width: 640px) { .big-time { font-size: 2.75rem; } }
     
-    .table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -0.875rem; }
-    @media (min-width: 640px) { .table-container { margin: 0; } }
+    /* Layout Tabella Responsive Per Evitare Tagli */
+    .table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; }
 
-    table { width: 100%; text-align: left; border-collapse: collapse; font-size: 0.75rem; min-width: 300px; }
-    th { padding: 0.5rem 0.75rem; background-color: #f1f5f9; color: #334155; font-weight: 600; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
-    td { padding: 0.4rem 0.75rem; border-bottom: 1px solid #e2e8f0; }
+    table { width: 100%; text-align: left; border-collapse: collapse; font-size: 0.72rem; }
+    th { padding: 0.5rem 0.4rem; background-color: #f1f5f9; color: #334155; font-weight: 600; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
+    td { padding: 0.4rem 0.4rem; border-bottom: 1px solid #e2e8f0; word-break: normal; }
+    
+    @media (max-width: 400px) {
+      table { font-size: 0.68rem; }
+      th, td { padding: 0.35rem 0.25rem; }
+    }
+
     .tr-highlight { background-color: #fef2f2; font-weight: 700; color: #991b1b; }
     
     footer { background-color: #ffffff; border-top: 1px solid #e2e8f0; padding: 0.75rem; text-align: center; font-size: 0.7rem; color: #64748b; padding-bottom: calc(0.75rem + env(safe-area-inset-bottom)); }
@@ -71,7 +81,6 @@
     <header>
       <div class="header-container">
         <div class="brand-container">
-          <!-- Logo con fallback ILCAM.jpg -->
           <img src="ILCAM.jpg" alt="ILCAM" class="logo-img" onerror="this.style.display='none'">
           <div>
             <h1 style="font-size: 1rem; font-weight: 700; margin:0; line-height: 1.2;">Levigatura Ribassati</h1>
@@ -188,7 +197,7 @@
                   <tr style="background-color: #fef2f2;">
                     <td>Avanzamento</td>
                     <td style="text-align: center; font-weight: 700; color: #b91c1c;" id="tb-lato-avanzamento">-- mm</td>
-                    <td style="text-align: right; color: #64748b;">Lato maggiore</td>
+                    <td style="text-align: right; color: #64748b;">Lato maggior</td>
                   </tr>
                   <tr>
                     <td>Pezzi Catasta</td>
@@ -213,7 +222,7 @@
                   <tr>
                     <td>Tempo Svuotamento</td>
                     <td style="text-align: center; font-weight: 700;" id="tb-tempo-primo-pezzo">--</td>
-                    <td style="text-align: right; color: #64748b;">Percorso libero</td>
+                    <td style="text-align: right; color: #64748b;">Tratta libera</td>
                   </tr>
                   <tr>
                     <td>Tempo Carico</td>
